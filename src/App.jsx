@@ -1,4 +1,5 @@
-import Navbar from './components/Navbar';
+import Header from './components/Header';
+import FloatingNav from './components/FloatingNav';
 import Footer from './components/Footer';
 import Hero from './sections/Hero';
 import About from './sections/About';
@@ -10,7 +11,7 @@ import Contact from './sections/Contact';
 export default function App() {
   return (
     <div className="relative min-h-screen bg-white text-black overflow-x-hidden">
-      <Navbar />
+      <Header />
       <main>
         <Hero />
         <About />
@@ -20,6 +21,7 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
+      <FloatingNav />
     </div>
   );
 }
