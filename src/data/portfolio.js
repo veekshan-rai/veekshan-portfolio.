@@ -7,7 +7,7 @@ export const personalInfo = {
   role: 'Aspiring Full Stack Developer',
   about:
     'I am a passionate full stack developer focused on building modern, user-friendly web applications. I enjoy solving real-world problems using Java, Python, and web technologies. I am continuously improving my skills to become an expert developer and create impactful digital products.',
-  resumeUrl: '/veekshan-rai-FullStack.pdf',
+  resumeUrl: '/veekshan.dev.pdf',
 };
 
 export const education = [
