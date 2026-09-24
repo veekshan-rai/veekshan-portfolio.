@@ -48,6 +48,7 @@ export const projects = [
     gradient: 'from-purple-600 to-indigo-600',
     glowColor: 'rgba(168,85,247,0.5)',
     emoji: '💰',
+    year: '2026',
   },
   {
     id: 2,
@@ -56,24 +57,26 @@ export const projects = [
     tech: ['HTML', 'CSS', 'JavaScript'],
     description:
       'A responsive food delivery web application that allows users to browse menus, view food items, and simulate ordering functionality with a user-friendly and attractive interface.',
-    liveUrl: '#',
+    liveUrl: 'https://food-delivery-chi-neon.vercel.app/',
     githubUrl: 'https://github.com/veekshan-rai/Food-delivery',
     gradient: 'from-orange-500 to-pink-600',
     glowColor: 'rgba(249,115,22,0.5)',
     emoji: '🍔',
+    year: '2026',
   },
   {
     id: 3,
-    title: 'Shoe Store',
+    title: 'Trend Feet',
     subtitle: 'E-Commerce Website',
     tech: ['React', 'Tailwind CSS'],
     description:
       'A modern e-commerce platform featuring product listings, smooth UI, and an automatic image carousel for an enhanced user experience.',
-    liveUrl: '#',
+    liveUrl: 'https://ig-ayush.github.io/Trendfeet-marketplace/',
     githubUrl: 'https://github.com/veekshan-rai/Trend-Feet',
     gradient: 'from-cyan-500 to-blue-600',
     glowColor: 'rgba(34,211,238,0.5)',
     emoji: '👟',
+    year: '2025',
   },
   {
     id: 4,
@@ -87,6 +90,7 @@ export const projects = [
     gradient: 'from-green-500 to-teal-600',
     glowColor: 'rgba(34,197,94,0.5)',
     emoji: '🍳',
+    year: '2025',
   },
 ];
 
@@ -96,14 +100,14 @@ export const certificates = [
     title: 'Full Stack Developer Course',
     issuer: 'Kodnest',
     date: '6 Months',
-    image: '/certificates/kodnest-fullstack.png',
+    imageKey: 'kodnest',
   },
   {
     id: 2,
-    title: 'React Bootcamp',
+    title: 'Web Development Certificate',
     issuer: 'CodelabSystems, Mangalore',
     date: '2025',
-    image: '/certificates/codelab-react.png',
+    imageKey: 'codelab1',
   },
 ];
 
@@ -113,8 +117,42 @@ export const social = {
   email: 'veekshanrai716@gmail.com',
 };
 
+export const experience = [];
+
+export const openSourceContributions = [
+  {
+    id: 1,
+    repoOwner: 'veekshan-rai',
+    repoName: 'Finance-Tracker',
+    description: 'feat(cashnest): Django personal finance tracking & income dashboard',
+    url: 'https://github.com/veekshan-rai/Finance-Tracker',
+  },
+  {
+    id: 2,
+    repoOwner: 'veekshan-rai',
+    repoName: 'Food-delivery',
+    description: 'feat(quickbite): responsive food ordering interface & menu interaction',
+    url: 'https://github.com/veekshan-rai/Food-delivery',
+  },
+  {
+    id: 3,
+    repoOwner: 'veekshan-rai',
+    repoName: 'Trend-Feet',
+    description: 'feat(store): modern React e-commerce shoe store with image carousel',
+    url: 'https://github.com/veekshan-rai/Trend-Feet',
+  },
+  {
+    id: 4,
+    repoOwner: 'veekshan-rai',
+    repoName: 'Recipe-Book',
+    description: 'feat(recipe): API integration for recipe browsing & ingredient details',
+    url: 'https://github.com/veekshan-rai/Recipe-Book',
+  },
+];
+
 export const emailJS = {
   serviceId: 'YOUR_SERVICE_ID',
   templateId: 'YOUR_TEMPLATE_ID',
   publicKey: 'YOUR_PUBLIC_KEY',
 };
+

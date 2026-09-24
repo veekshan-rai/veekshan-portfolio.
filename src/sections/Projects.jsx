@@ -1,89 +1,110 @@
 import { motion } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
-import { projects } from '../data/portfolio';
+import { FiArrowUpRight } from 'react-icons/fi';
+import { projects, social } from '../data/portfolio';
+
+// Project images
+import cashNestImg from '../img/CashNest.jpg';
+import quickBiteImg from '../img/quickbite.jpg';
+import trendFeetImg from '../img/trendfeet.jpg';
+import recipeBookImg from '../img/recipebook.jpg';
+
+const projectImages = {
+  CashNest: cashNestImg,
+  QuickBite: quickBiteImg,
+  'Trend Feet': trendFeetImg,
+  'Recipe Book': recipeBookImg,
+};
 
 export default function Projects() {
   return (
-    <section id="projects" className="section-padding bg-gray-50">
-      <div className="max-w-5xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="section-title">My <span className="gradient-text">Projects</span></h2>
-          <p className="section-subtitle">
-            Applications I've built to solve problems and learn new technologies
-          </p>
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 gap-6">
-          {projects.map((project, i) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="border border-gray-200 rounded-lg bg-white hover:border-gray-400 transition-all group"
-            >
-              {/* Header */}
-              <div className="p-6 border-b border-gray-100">
-                <div className="flex items-center gap-3 mb-1">
-                  <span className="text-2xl">{project.emoji}</span>
-                  <div>
-                    <h3 className="text-lg font-bold text-black">{project.title}</h3>
-                    <p className="text-sm text-gray-400">{project.subtitle}</p>
+    <section id="projects" className="w-full">
+      {/* Vertical List Grid */}
+      <div className="flex flex-col">
+        {projects.map((project, i) => (
+          <motion.div
+            key={project.id}
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: i * 0.1 }}
+            className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 py-6 sm:py-8 border-b border-neutral-800/50 last:border-0"
+          >
+            {/* Left: Project Image Squircle */}
+            <div className={`w-16 h-16 sm:w-20 sm:h-20 shrink-0 rounded-2xl bg-gradient-to-br ${project.gradient} p-0.5 shadow-xl overflow-hidden`}>
+              <div className="w-full h-full rounded-[14px] overflow-hidden">
+                {projectImages[project.title] ? (
+                  <img
+                    src={projectImages[project.title]}
+                    alt={project.title}
+                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-[#0c0d0e]/80 rounded-[14px] flex items-center justify-center text-3xl sm:text-4xl">
+                    {project.emoji}
                   </div>
+                )}
+              </div>
+            </div>
+
+            {/* Right: Content container */}
+            <div className="flex-1 min-w-0 w-full pt-1">
+              {/* Header Row: Dot + Title & Year */}
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-2.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                  <h3 className="text-lg font-bold text-white tracking-tight lowercase">
+                    {project.title}
+                  </h3>
                 </div>
+                <span className="text-xs text-neutral-500 font-mono">
+                  {project.year || '2024'}
+                </span>
               </div>
 
-              {/* Body */}
-              <div className="p-6">
-                <p className="text-sm text-gray-500 leading-relaxed mb-4">
-                  {project.description}
-                </p>
+              {/* Description */}
+              <p className="text-[13px] sm:text-sm text-neutral-400 leading-relaxed mb-5 lowercase">
+                {project.description}
+              </p>
 
-                {/* Tech */}
-                <div className="flex flex-wrap gap-2 mb-5">
-                  {project.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="px-3 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-600 border border-gray-200"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
+              {/* Tech Stack Pills */}
+              <div className="flex flex-wrap gap-2 mb-5">
+                {project.tech.map((t) => (
+                  <span
+                    key={t}
+                    className="px-3 py-1 text-[11px] font-mono rounded bg-blue-950/20 text-blue-300 border border-blue-900/40 lowercase"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
 
-                {/* Links */}
-                <div className="flex items-center gap-3">
+              {/* Links Row */}
+              <div className="flex items-center gap-5 text-[13px] font-mono text-blue-600">
+                {project.githubUrl && (
                   <a
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 text-gray-600 text-sm font-medium hover:border-black hover:text-black transition-colors"
+                    className="flex items-center gap-1.5 hover:text-blue-400 transition-colors"
                   >
-                    <FaGithub size={14} />
-                    Code
+                    github <FiArrowUpRight size={14} />
                   </a>
-                  {project.liveUrl !== '#' && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 rounded-lg bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors"
-                    >
-                      <FaExternalLinkAlt size={11} />
-                      Live
-                    </a>
-                  )}
-                </div>
+                )}
+                {project.liveUrl !== '#' && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 hover:text-blue-400 transition-colors"
+                  >
+                    site <FiArrowUpRight size={14} />
+                  </a>
+                )}
               </div>
-            </motion.div>
-          ))}
-        </div>
+            </div>
+          </motion.div>
+        ))}
       </div>
     </section>
   );

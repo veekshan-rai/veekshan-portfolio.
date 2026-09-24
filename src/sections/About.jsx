@@ -1,63 +1,73 @@
 import { motion } from 'framer-motion';
-import {
-  FaJava, FaPython, FaReact, FaHtml5, FaCss3Alt, FaGitAlt, FaGithub,
-} from 'react-icons/fa';
-import {
-  SiJavascript, SiTailwindcss, SiDjango, SiMysql, SiVite,
-} from 'react-icons/si';
+import { FaCode } from 'react-icons/fa';
 
-const techStack = [
-  { name: 'Java', icon: FaJava },
-  { name: 'Python', icon: FaPython },
-  { name: 'React', icon: FaReact },
-  { name: 'JavaScript', icon: SiJavascript },
-  { name: 'HTML5', icon: FaHtml5 },
-  { name: 'CSS3', icon: FaCss3Alt },
-  { name: 'Tailwind', icon: SiTailwindcss },
-  { name: 'Django', icon: SiDjango },
-  { name: 'MySQL', icon: SiMysql },
-  { name: 'Git', icon: FaGitAlt },
-  { name: 'GitHub', icon: FaGithub },
-  { name: 'Vite', icon: SiVite },
+const stackCategories = [
+  {
+    title: 'LANGUAGES',
+    items: ['javascript', 'python', 'java', 'html5', 'css3'],
+  },
+  {
+    title: 'WEB & FRAMEWORKS',
+    items: ['react', 'django', 'spring boot', 'tailwind', 'vite', 'rest apis'],
+  },
+  {
+    title: 'DATABASES & TOOLS',
+    items: ['mysql', 'git', 'github', 'linux', 'ai tools'],
+  },
 ];
 
 export default function About() {
   return (
-    <section id="about" className="section-padding bg-gray-50">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="section-title"><span className="gradient-text">About</span> Me</h2>
-          <p className="section-subtitle">Technologies and tools I work with</p>
-        </motion.div>
+    <section id="about" className="w-full">
+      {/* Section Header */}
+      <div className="flex items-center justify-between mb-5">
+        <div className="flex items-center gap-2 text-neutral-300 font-medium text-sm sm:text-base">
+          <FaCode className="text-neutral-400" size={15} />
+          <span>Technologies & Stack</span>
+        </div>
+      </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4"
-        >
-          {techStack.map((tech) => (
+      {/* Categorized Terminal-Style Stack Container */}
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4 }}
+        className="relative rounded-xl border border-neutral-800/90 bg-[#090b0e]/90 p-5 sm:p-6 backdrop-blur-sm overflow-hidden"
+      >
+        {/* Subtle Ambient Code Rain Effect */}
+        <div className="pointer-events-none absolute inset-0 opacity-[0.03] bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:16px_16px]" />
+
+        <div className="relative z-10 space-y-6">
+          {stackCategories.map((category, index) => (
             <div
-              key={tech.name}
-              className="flex flex-col items-center gap-2 py-5 px-3 rounded-lg border border-gray-200 bg-white hover:border-black transition-colors group"
+              key={category.title}
+              className={`space-y-3 ${
+                index !== stackCategories.length - 1
+                  ? 'border-b border-neutral-800/70 pb-6'
+                  : ''
+              }`}
             >
-              <tech.icon
-                size={28}
-                className="text-gray-400 group-hover:text-black transition-colors"
-              />
-              <span className="text-xs text-gray-500 group-hover:text-black font-medium transition-colors">
-                {tech.name}
-              </span>
+              {/* Category Title */}
+              <h3 className="text-xs font-mono tracking-widest text-neutral-400 font-semibold uppercase">
+                {category.title}
+              </h3>
+
+              {/* Items Flex Wrap Grid */}
+              <div className="flex flex-wrap gap-2.5">
+                {category.items.map((item) => (
+                  <span
+                    key={item}
+                    className="font-mono text-xs sm:text-sm text-cyan-200/90 bg-[#0d1627]/90 border border-cyan-900/60 rounded-md px-3.5 py-1.5 hover:border-cyan-500/80 hover:text-cyan-100 hover:bg-[#121f38] transition-all duration-200 shadow-sm cursor-default"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
             </div>
           ))}
-        </motion.div>
-      </div>
+        </div>
+      </motion.div>
     </section>
   );
 }

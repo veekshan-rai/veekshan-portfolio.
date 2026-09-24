@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import {
+  FiHome,
+  FiBriefcase,
+  FiGrid,
+  FiTerminal,
+  FiMail,
+  FiAward
+} from 'react-icons/fi';
 
-const navLinks = [
-  { name: 'Home', href: '#home' },
-  { name: 'About', href: '#about' },
-  { name: 'Education', href: '#education' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Certificates', href: '#certificates' },
-  { name: 'Contact', href: '#contact' },
+const navItems = [
+  { name: 'Home', href: '#home', icon: FiHome },
+  { name: 'Projects', href: '#projects', icon: FiBriefcase }, // Using briefcase for projects if we follow image, or we can use FiGrid. The image has Briefcase 2nd. Let's map to user's sections.
+  { name: 'Experience', href: '#experience', icon: FiGrid }, 
+  { name: 'Certificates', href: '#certificates', icon: FiTerminal }, 
+  { name: 'Contact', href: '#contact', icon: FiMail },
 ];
 
 export default function FloatingNav() {
@@ -14,40 +21,56 @@ export default function FloatingNav() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = navLinks.map((l) => l.href.slice(1));
-      for (const id of [...sections].reverse()) {
-        const el = document.getElementById(id);
-        if (el && el.getBoundingClientRect().top <= 300) {
-          setActiveSection(id);
+      const sections = navItems.map((item) => item.href.slice(1));
+      const scrollPosition = window.scrollY + 250;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const sectionId = sections[i];
+        const element = document.getElementById(sectionId);
+        if (element && element.offsetTop <= scrollPosition) {
+          setActiveSection(sectionId);
           break;
         }
       }
     };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollTo = (e, href) => {
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-max px-4">
-      <div className="bg-gradient-to-r from-black via-green-950 to-black backdrop-blur-md px-6 py-3 rounded-2xl sm:rounded-full border border-green-900/50 shadow-[0_0_20px_rgba(0,0,0,0.5)] flex flex-wrap justify-center items-center gap-4 sm:gap-6">
-        {navLinks.map((link) => (
-          <a
-            key={link.name}
-            href={link.href}
-            onClick={(e) => {
-              e.preventDefault();
-              document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className={`text-xs sm:text-sm font-semibold transition-all ${
-              activeSection === link.href.slice(1)
-                ? 'text-green-400 drop-shadow-[0_0_5px_rgba(74,222,128,0.5)] scale-105'
-                : 'text-gray-400 hover:text-white'
-            }`}
-          >
-            {link.name}
-          </a>
-        ))}
-      </div>
+    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-auto">
+      <nav className="flex items-center gap-2 p-2 rounded-full border border-neutral-800/80 bg-[#0a0a0a]/90 backdrop-blur-xl shadow-2xl">
+        {navItems.map((item) => {
+          const Icon = item.icon;
+          const isActive = activeSection === item.href.slice(1);
+
+          return (
+            <a
+              key={item.name}
+              href={item.href}
+              onClick={(e) => scrollTo(e, item.href)}
+              title={item.name}
+              className={`relative flex items-center justify-center w-12 h-12 rounded-[16px] transition-all duration-300 ${
+                isActive
+                  ? 'bg-blue-950/40 border border-blue-500/60 text-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.15)]'
+                  : 'bg-[#141414] border border-white/5 text-neutral-500 hover:bg-[#1f1f1f] hover:text-neutral-300 hover:border-white/10'
+              }`}
+            >
+              <Icon className="text-xl" />
+            </a>
+          );
+        })}
+      </nav>
     </div>
   );
 }
