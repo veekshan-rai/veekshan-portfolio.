@@ -10,8 +10,8 @@ import {
 
 const navItems = [
   { name: 'Home', href: '#home', icon: FiHome },
-  { name: 'Projects', href: '#projects', icon: FiBriefcase }, // Using briefcase for projects if we follow image, or we can use FiGrid. The image has Briefcase 2nd. Let's map to user's sections.
-  { name: 'Experience', href: '#experience', icon: FiGrid }, 
+  { name: 'Experience', href: '#experience', icon: FiGrid },
+  { name: 'Projects', href: '#projects', icon: FiBriefcase },
   { name: 'Certificates', href: '#certificates', icon: FiTerminal }, 
   { name: 'Contact', href: '#contact', icon: FiMail },
 ];
@@ -22,7 +22,7 @@ export default function FloatingNav() {
   useEffect(() => {
     const handleScroll = () => {
       const sections = navItems.map((item) => item.href.slice(1));
-      const scrollPosition = window.scrollY + 250;
+      const scrollPosition = window.scrollY + 200;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const sectionId = sections[i];
@@ -43,7 +43,7 @@ export default function FloatingNav() {
     e.preventDefault();
     const target = document.querySelector(href);
     if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 

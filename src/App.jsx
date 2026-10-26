@@ -29,11 +29,11 @@ export default function App() {
         {/* Background Glow Confined Inside Borders */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden z-0">
           <div 
-            className="absolute left-[-20%] top-0 w-[140%] h-[800px] opacity-40 blur-[120px]"
+            className="absolute left-[-20%] top-0 w-[140%] h-[800px] opacity-40 blur-[120px] transform-gpu will-change-transform"
             style={{ background: 'radial-gradient(circle at 30% 20%, rgba(16, 185, 129, 0.10) 0%, transparent 60%)' }}
           />
           <div 
-            className="absolute right-[-20%] top-[40%] w-[140%] h-[800px] opacity-30 blur-[140px]"
+            className="absolute right-[-20%] top-[40%] w-[140%] h-[800px] opacity-30 blur-[140px] transform-gpu will-change-transform"
             style={{ background: 'radial-gradient(circle at 70% 50%, rgba(16, 185, 129, 0.07) 0%, transparent 60%)' }}
           />
         </div>

@@ -7,7 +7,7 @@ export default function Hero() {
     { icon: FaGithub,   href: social.github,                  label: 'GitHub' },
     { icon: FaLinkedin, href: social.linkedin,                 label: 'LinkedIn' },
     { icon: FaEnvelope, href: `mailto:${social.email}`,        label: 'Email' },
-    { icon: FaFileAlt,  href: personalInfo.resumeUrl,          label: 'Resume', download: true },
+    { icon: FaFileAlt,  href: personalInfo.resumeUrl,          label: 'Resume' },
   ];
 
   return (
@@ -58,9 +58,8 @@ export default function Hero() {
           <a
             key={item.label}
             href={item.href}
-            target={item.download ? undefined : '_blank'}
+            target={item.href.startsWith('mailto:') ? undefined : '_blank'}
             rel="noopener noreferrer"
-            download={item.download || undefined}
             title={item.label}
             className="hover:text-emerald-400 transition-colors duration-200 text-[18px]"
           >

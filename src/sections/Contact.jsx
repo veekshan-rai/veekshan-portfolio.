@@ -30,9 +30,8 @@ export default function Contact() {
       id: 'resume',
       icon: FaFileAlt,
       label: 'resume',
-      value: 'veekshan-resume.pdf',
+      value: 'veekshan-rai.pdf',
       href: personalInfo.resumeUrl,
-      download: true,
     },
   ];
 
@@ -60,9 +59,8 @@ export default function Contact() {
           <a
             key={item.id}
             href={item.href}
-            target={item.download ? undefined : '_blank'}
+            target={item.href.startsWith('mailto:') ? undefined : '_blank'}
             rel="noopener noreferrer"
-            download={item.download ? true : undefined}
             className="group flex items-center justify-between py-4 px-2 sm:px-3 hover:bg-neutral-900/50 transition-colors duration-200"
           >
             {/* Left: Icon + Label */}

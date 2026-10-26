@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaGithub, FaFolderOpen } from 'react-icons/fa';
 import { FiArrowUpRight } from 'react-icons/fi';
 import { projects, social } from '../data/portfolio';
 
@@ -19,6 +19,14 @@ const projectImages = {
 export default function Projects() {
   return (
     <section id="projects" className="w-full">
+      {/* Section Header */}
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-2 text-neutral-300 font-medium text-sm sm:text-base">
+          <FaFolderOpen className="text-neutral-400" size={16} />
+          <span>Projects</span>
+        </div>
+      </div>
+
       {/* Vertical List Grid */}
       <div className="flex flex-col">
         {projects.map((project, i) => (

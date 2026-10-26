@@ -6,12 +6,10 @@ import { certificates } from '../data/portfolio';
 
 import kodnestImg from '../img/kodnest.png';
 import codelab1Img from '../img/codelab1.jpeg';
-import codelab2Img from '../img/codelab2.jpeg';
 
 const imageMap = {
   kodnest: kodnestImg,
   codelab1: codelab1Img,
-  codelab2: codelab2Img,
 };
 
 export default function Certificates() {

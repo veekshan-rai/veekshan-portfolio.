@@ -53,18 +53,26 @@ export default function Header() {
         )}
       </div>
 
-      {/* Right side: Resume Nav Link */}
-      <div className="flex items-center gap-3">
+      {/* Right side: Resume View & Download Pill */}
+      <div className="flex items-center rounded-full border border-neutral-800 bg-neutral-900/80 hover:border-neutral-700 transition-all p-0.5">
         <a
           href={personalInfo.resumeUrl}
           target="_blank"
           rel="noopener noreferrer"
-          download
-          className="text-xs sm:text-sm font-medium text-neutral-300 hover:text-white px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-neutral-800 bg-neutral-900/80 hover:border-neutral-700 hover:bg-neutral-800/60 transition-all flex items-center gap-1.5"
+          title="View Resume in new tab"
+          className="text-xs sm:text-sm font-medium text-neutral-300 hover:text-white px-3 py-1 sm:px-3.5 sm:py-1 rounded-full hover:bg-neutral-800/60 transition-all flex items-center gap-1.5"
         >
           <FiFileText size={13} className="text-emerald-400" />
           <span>Resume</span>
-          <FiDownload size={11} className="text-neutral-400" />
+        </a>
+        <div className="w-[1px] h-3.5 bg-neutral-800" />
+        <a
+          href={personalInfo.resumeUrl}
+          download="veekshan-rai.pdf"
+          title="Download Resume PDF"
+          className="text-neutral-400 hover:text-white px-2.5 py-1 sm:py-1 rounded-full hover:bg-neutral-800/60 transition-all flex items-center justify-center"
+        >
+          <FiDownload size={12} className="hover:text-emerald-400 transition-colors" />
         </a>
       </div>
     </header>
